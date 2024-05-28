@@ -1,12 +1,23 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import Colors from '@/src/constants/Colors';
+import Colors from '@constants/Colors';
+import { Product } from '@assets/types/types';
 
-export default function ProductListItem({ product }: any) {
+// A default image we can use in case out product image is null
+export const defaultPizzaImage = 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/peperoni.png';
+
+// This is kind of confusing but we're just saying that ProductListItemProps is an object
+// that contains a product variable of type Product.
+type ProductListItemProps = {
+    product: Product;
+};
+
+export default function ProductListItem({ product }: ProductListItemProps) {
     return (
         // A view is a container similar to a <div> that helps us group together JSX 
         // elements
+        /* We also provide a fallback image if the original image is null */
         <View style={styles.container}>
-            <Image source={{ uri: product.image }} style={styles.image} />
+            <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
             <Text style={styles.title}>{product.name}</Text>
             <Text style={styles.price}>${product.price}</Text>
         </View>
