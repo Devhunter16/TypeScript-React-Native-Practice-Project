@@ -7,7 +7,9 @@ import products from '@assets/data/products';
 // renderItem should be a function that tells FlatList how should one single item from the
 // array we provided to the data property be rendered. "item" is necessary inside the function
 // in order form rednerItem to iterate through the list of products and display each one. numColumns
-// is optional here.
+// is optional here. contentContainerStyle gap: 10 is just another way to specify the size of row 
+// spacing. columnWrapperStyle gap: 10 specifies column spacing. padding: 10 spcifies padding around
+// the entire FlatList.
 export default function MenuScreen() {
   return (
     <View>
@@ -15,6 +17,8 @@ export default function MenuScreen() {
         data={products}
         renderItem={({ item }) => <ProductListItem product={item} />}
         numColumns={2}
+        contentContainerStyle={{ gap: 10, padding: 10 }}
+        columnWrapperStyle={{ gap: 10 }}
       />
     </View>
   );
