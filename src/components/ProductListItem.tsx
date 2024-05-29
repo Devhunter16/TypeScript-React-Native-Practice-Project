@@ -16,8 +16,14 @@ export default function ProductListItem({ product }: ProductListItemProps) {
         // A view is a container similar to a <div> that helps us group together JSX 
         // elements
         /* We also provide a fallback image if the original image is null */
+        // Using resizeMode here so every image fits it's container perfectly without
+        // being cut off at the edges.
         <View style={styles.container}>
-            <Image source={{ uri: product.image || defaultPizzaImage }} style={styles.image} />
+            <Image
+                source={{ uri: product.image || defaultPizzaImage }}
+                style={styles.image}
+                resizeMode='contain'
+            />
             <Text style={styles.title}>{product.name}</Text>
             <Text style={styles.price}>${product.price}</Text>
         </View>
@@ -34,7 +40,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 20,
-        flex: 1
+        flex: 1,
+        maxWidth: '50%'
     },
     separator: {
         marginVertical: 30,
