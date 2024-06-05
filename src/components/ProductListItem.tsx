@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, Pressable, Image } from 'react-native';
 import Colors from '@constants/Colors';
 import { Product } from '@assets/types/types';
+import { Link } from 'expo-router';
 
 // A default image we can use in case out product image is null
 export const defaultPizzaImage = 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/peperoni.png';
@@ -18,15 +19,20 @@ export default function ProductListItem({ product }: ProductListItemProps) {
         /* We also provide a fallback image if the original image is null */
         // Using resizeMode here so every image fits it's container perfectly without
         // being cut off at the edges.
-        <View style={styles.container}>
-            <Image
-                source={{ uri: product.image || defaultPizzaImage }}
-                style={styles.image}
-                resizeMode='contain'
-            />
-            <Text style={styles.title}>{product.name}</Text>
-            <Text style={styles.price}>${product.price}</Text>
-        </View>
+        // Using asChild in our link here so that our component skips rendering the 
+        // link and just renders the Pressable so that our styles don't get messed up 
+        // here.
+        <Link href={`/${product.id}`} asChild>
+            <Pressable style={styles.container}>
+                <Image
+                    source={{ uri: product.image || defaultPizzaImage }}
+                    style={styles.image}
+                    resizeMode='contain'
+                />
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.price}>${product.price}</Text>
+            </Pressable>
+        </Link>
     );
 };
 
