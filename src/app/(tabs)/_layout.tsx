@@ -26,8 +26,12 @@ export default function TabLayout() {
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
       }}>
+
+      {/* We don't want the index tab showing up so we set options href to null */}
+      <Tabs.Screen name="index" options={{ href: null }} />
+
       <Tabs.Screen
-        name="index"
+        name="menu"
         options={{
           title: 'Menu',
           tabBarIcon: ({ color }) => <TabBarIcon name="cutlery" color={color} />,
