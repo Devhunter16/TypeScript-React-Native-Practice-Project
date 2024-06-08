@@ -22,7 +22,7 @@ export default function ProductListItem({ product }: ProductListItemProps) {
         // Using asChild in our link here so that our component skips rendering the 
         // link and just renders the Pressable so that our styles don't get messed up 
         // here.
-        <Link href={`/${product.id}`} asChild>
+        <Link href={`/menu/${product.id}`} asChild>
             <Pressable style={styles.container}>
                 <Image
                     source={{ uri: product.image || defaultPizzaImage }}
