@@ -7,6 +7,14 @@ import { Stack } from 'expo-router';
 // A _layout.tsx component file wraps around the child components in the same folder.
 // It is also a good place to use data or context providers etc.
 
+/* Stack Navigator: Manages a stack of screens, allowing users to navigate between 
+them. Each screen is pushed onto the stack when navigated to, and popped off when 
+navigating back.
+
+Stack.Screen Component: Represents a single screen within the stack navigator. Each
+Stack.Screen component specifies a route and a component that should be rendered 
+for that route. */
+
 // Stack.Screen here targets our index file (name="index") in the same folder and
 // changes the header title to "Menu" rather than just "index" so we see that in
 // our app.
