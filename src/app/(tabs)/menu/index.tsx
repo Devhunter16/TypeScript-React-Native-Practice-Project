@@ -1,5 +1,5 @@
 import { View, FlatList } from 'react-native';
-import ProductListItem from '@components/ProductListItem';
+import { ProductListItem } from '@components/ProductListItem';
 import products from '@assets/data/products';
 
 // We're using a FlatList in this function. A FlatList enables infinite scroll vertically

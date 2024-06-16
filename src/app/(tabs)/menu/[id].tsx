@@ -1,7 +1,7 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import products from 'assets/data/products';
-import defaultPizzaImage from '@components/ProductListItem';
+import { defaultPizzaImage } from '@components/ProductListItem';
 
 export default function ProductDetailsScreen() {
     // useLocalSearchParams is a hook imported from expo-router that is used to extract
@@ -12,7 +12,11 @@ export default function ProductDetailsScreen() {
 
     // If product is undefined return this.
     if (!product) {
-        return <Text>Product not found</Text>;
+        return (
+            <View style={styles.container}>
+                <Text>Product not found</Text>;
+            </View>
+        );
     };
 
     // If product is found return this.

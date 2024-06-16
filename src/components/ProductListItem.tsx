@@ -12,7 +12,7 @@ type ProductListItemProps = {
     product: Product;
 };
 
-export default function ProductListItem({ product }: ProductListItemProps) {
+export function ProductListItem({ product }: ProductListItemProps) {
     return (
         // A view is a container similar to a <div> that helps us group together JSX 
         // elements
