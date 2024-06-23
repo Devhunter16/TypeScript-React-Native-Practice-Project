@@ -2,6 +2,7 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import products from 'assets/data/products';
 import { defaultPizzaImage } from '@components/ProductListItem';
+import { useState } from 'react';
 
 const sizes = ['S', 'M', 'L', 'XL'];
 
@@ -9,6 +10,8 @@ export default function ProductDetailsScreen() {
     // useLocalSearchParams is a hook imported from expo-router that is used to extract
     // dymaic data passed via the URL to a spefici screen or component.
     const { id } = useLocalSearchParams();
+
+    const [selectedSize, setSelectedSize] = useState('M');
 
     const product = products.find((item) => item.id.toString() === id);
 
@@ -29,7 +32,7 @@ export default function ProductDetailsScreen() {
             <Text>Select size</Text>
             <View style={styles.sizes}>
                 {sizes.map(size => (
-                    <View key={size} style={styles.size}>
+                    <View key={size} style={[styles.size, { backgroundColor: selectedSize === size ? 'gainsboro' : 'white' }]}>
                         <Text style={styles.sizeText}>{size}</Text>
                     </View>
                 ))}
