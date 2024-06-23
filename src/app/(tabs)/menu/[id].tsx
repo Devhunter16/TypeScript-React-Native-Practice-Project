@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import products from 'assets/data/products';
 import { defaultPizzaImage } from '@components/ProductListItem';
 import { useState } from 'react';
+import Button from '@components/Button';
 
 const sizes = ['S', 'M', 'L', 'XL'];
 
@@ -15,6 +16,10 @@ export default function ProductDetailsScreen() {
 
     const product = products.find((item) => item.id.toString() === id);
 
+    const addToCart = () => {
+        console.warn("Adding to cart: size: ", selectedSize);
+    };
+
     // If product is undefined return this.
     if (!product) {
         return (
@@ -24,7 +29,8 @@ export default function ProductDetailsScreen() {
         );
     };
 
-    // If product is found return this.
+    // If product is found return this. The button here is defined in as a component 
+    // that can do anything a Pressable can do, and so we can add onPress to our button.
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ title: product.name }} />
@@ -38,6 +44,7 @@ export default function ProductDetailsScreen() {
                 ))}
             </View>
             <Text style={styles.price}>${product.price}</Text>
+            <Button onPress={addToCart} text="Add to cart" />
         </View>
     );
 };
@@ -54,7 +61,8 @@ const styles = StyleSheet.create({
     },
     price: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginTop: 'auto'
     },
     sizes: {
         flexDirection: 'row',
