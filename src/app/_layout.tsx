@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import CartProvider from '@/providers/CartProvider';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@components/useColorScheme';
@@ -40,20 +41,24 @@ export default function RootLayout() {
 
   if (!loaded) {
     return null;
-  }
+  };
 
   return <RootLayoutNav />;
-}
+};
 
+// We wrapped all of the screens in our app with CartProvider so that they have access
+// to an array caller "items" and a function caller "onAddItem()/."
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="cart" options={{ presentation: 'modal' }} />
-      </Stack>
+      <CartProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="cart" options={{ presentation: 'modal' }} />
+        </Stack>
+      </CartProvider>
     </ThemeProvider>
   );
-}
+};
