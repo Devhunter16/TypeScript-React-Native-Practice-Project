@@ -13,7 +13,7 @@ export const CartContext = createContext<CartType>({
 
 // Importing the PropsWithChildren type from react because TypeScript was yelling at
 // us that the children prop was untyped. 
-const CartProvider = ({ children }: PropsWithChildren<{}>) => {
+const CartProvider = ({ children }: PropsWithChildren) => {
     const [items, setItems] = useState<CartItem[]>([]);
 
     function addItem(product: Product, size: CartItem['size']) {
@@ -31,9 +31,11 @@ const CartProvider = ({ children }: PropsWithChildren<{}>) => {
     };
 
     {/* The value we pass to our CartContext.Provider becomes available to our consumer */ }
-    <CartContext.Provider value={{ items: items, addItem: addItem }}>
-        {children}
-    </CartContext.Provider>
+    return (
+        <CartContext.Provider value={{ items: items, addItem: addItem }}>
+            {children}
+        </CartContext.Provider>
+    );
 };
 
 export default CartProvider;
